@@ -1,4 +1,4 @@
-<!doctype html> 
+<!doctype html>
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
@@ -179,6 +179,14 @@ footer a:hover{color:#fff;text-decoration:underline}
   .statement,.tuesday,.stories,.events,.about{padding-top:80px;padding-bottom:80px}
   .wrap{padding:0 22px}
 }
+/* hero video control */
+.vtoggle{position:absolute;right:32px;top:94px;z-index:3;display:inline-flex;align-items:center;gap:10px;background:rgba(10,21,34,.45);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:8px 14px;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background .2s}
+.vtoggle:hover{background:rgba(10,21,34,.7)}
+.vtoggle:focus-visible{outline:2px solid var(--glow);outline-offset:3px}
+.vtoggle .ic{display:inline-block;width:10px;height:10px;border-left:3px solid currentColor;border-right:3px solid currentColor}
+.vtoggle[data-state="paused"] .ic{width:0;height:0;border-left:9px solid currentColor;border-right:0;border-top:5px solid transparent;border-bottom:5px solid transparent}
+@media (max-width:900px){.vtoggle{right:22px}}
+
 /* topographic layers: base lines, cursor drift and glow */
 .statement::before,.statement::after,.share::before,.share::after,.stories::before,.stories::after{content:"";position:absolute;inset:-24px;pointer-events:none;transform:translate3d(var(--px,0px),var(--py,0px),0);will-change:transform}
 .statement::before,.share::before{background:var(--contour-light) center/cover;opacity:.16}
@@ -227,9 +235,10 @@ footer a:hover{color:#fff;text-decoration:underline}
 
 <main id="top">
   <section class="hero">
-    <video id="bgvid" autoplay muted loop playsinline preload="metadata" poster="assets/hero-poster.jpg" aria-hidden="true">
+    <video id="bgvid" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg" aria-hidden="true">
       <source src="assets/hero-update.mp4" type="video/mp4">
     </video>
+    <button class="vtoggle" id="vidtoggle" type="button" data-state="paused" aria-label="Play background video"><span class="ic" aria-hidden="true"></span><span class="lbl">Play</span></button>
     <div class="bottom"><div class="wrap hero-grid">
       <div>
         <h1>Walk, talk and find your footing.</h1>
@@ -375,8 +384,41 @@ op.addEventListener('click',function(){setMenu(true);});
 document.getElementById('close').addEventListener('click',function(){setMenu(false);});
 ov.addEventListener('click',function(e){if(e.target.closest('a')){setMenu(false);}});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){setMenu(false);}});
-var v=document.getElementById('bgvid');
-if(v&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause();}
+/* hero video: explicit start, retry on first interaction, visible control */
+(function(){
+  var v=document.getElementById('bgvid'),btn=document.getElementById('vidtoggle');
+  if(!v){return;}
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,userPaused=false;
+  v.muted=true;v.defaultMuted=true;
+  function paint(){
+    if(!btn){return;}
+    var playing=!v.paused;
+    btn.setAttribute('data-state',playing?'playing':'paused');
+    btn.setAttribute('aria-label',playing?'Pause background video':'Play background video');
+    btn.querySelector('.lbl').textContent=playing?'Pause':'Play';
+  }
+  function start(){
+    if(userPaused){return;}
+    var r=v.play();
+    if(r&&r.catch){r.catch(function(err){if(err.name!=='AbortError'){console.warn('Hero video play() was refused:',err.name,err.message);}paint();});}
+  }
+  v.addEventListener('play',paint);v.addEventListener('pause',paint);
+  var src=v.querySelector('source');
+  if(src){src.addEventListener('error',function(){console.warn('Hero video source failed to load:',v.currentSrc);});}
+  v.addEventListener('error',function(){console.warn('Hero video error code:',v.error&&v.error.code);});
+  if(btn){btn.addEventListener('click',function(){
+    if(v.paused){userPaused=false;start();}else{userPaused=true;v.pause();}
+  });}
+  if(reduce){v.removeAttribute('autoplay');v.pause();userPaused=true;}
+  else{
+    start();
+    v.addEventListener('loadeddata',start);
+    ['pointerdown','keydown','touchstart'].forEach(function(t){
+      window.addEventListener(t,function(){if(v.paused){start();}},{once:true,passive:true});
+    });
+  }
+  paint();
+})();
 
 /* scroll reveals */
 (function(){
