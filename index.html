@@ -236,6 +236,7 @@ footer a:hover{color:#fff;text-decoration:underline}
 <main id="top">
   <section class="hero">
     <video id="bgvid" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg" aria-hidden="true">
+      <source src="assets/hero-update.webm" type="video/webm">
       <source src="assets/hero-update.mp4" type="video/mp4">
     </video>
     <button class="vtoggle" id="vidtoggle" type="button" data-state="paused" aria-label="Play background video"><span class="ic" aria-hidden="true"></span><span class="lbl">Play</span></button>
@@ -403,8 +404,9 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'){setMenu(fal
     if(r&&r.catch){r.catch(function(err){if(err.name!=='AbortError'){console.warn('Hero video play() was refused:',err.name,err.message);}paint();});}
   }
   v.addEventListener('play',paint);v.addEventListener('pause',paint);
-  var src=v.querySelector('source');
-  if(src){src.addEventListener('error',function(){console.warn('Hero video source failed to load:',v.currentSrc);});}
+  [].forEach.call(v.querySelectorAll('source'),function(src){
+    src.addEventListener('error',function(){console.warn('Hero video source failed to load:',src.src);});
+  });
   v.addEventListener('error',function(){console.warn('Hero video error code:',v.error&&v.error.code);});
   if(btn){btn.addEventListener('click',function(){
     if(v.paused){userPaused=false;start();}else{userPaused=true;v.pause();}
