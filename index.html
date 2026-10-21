@@ -50,6 +50,8 @@ h3{font-size:1.5rem;font-weight:400;letter-spacing:-.015em;line-height:1.2}
 .ph.b{background:linear-gradient(160deg,#9db0c0 0%,#6a8888 55%,#334636 100%)}
 .ph.c{background:linear-gradient(180deg,#c9b99d 0%,#8f8068 52%,#473c30 100%)}
 .ph.d{background:linear-gradient(200deg,#7d8fa8 0%,#475b73 60%,#1a2838 100%)}
+.ph picture,.ph img{display:block;width:100%;height:100%}
+.ph img{object-fit:cover}
 .ph span{position:absolute;left:14px;bottom:12px;font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.9);background:rgba(0,0,0,.4);padding:4px 9px;border-radius:4px}
 
 /* header */
@@ -283,7 +285,7 @@ footer a:hover{color:#fff;text-decoration:underline}
         </dl>
         <a class="btn" href="#events">See the next meet</a>
       </div>
-      <div class="ph b" role="img" aria-label="Placeholder: men walking together on the mountain"><span>Photo: walking, mid-conversation</span></div>
+      <div class="ph b"><picture><source type="image/webp" srcset="assets/img/walk-divis-dusk-400.webp 400w, assets/img/walk-divis-dusk-547.webp 547w" sizes="(max-width:900px) 92vw, 480px"><img src="assets/img/walk-divis-dusk-547.jpg" srcset="assets/img/walk-divis-dusk-400.jpg 400w, assets/img/walk-divis-dusk-547.jpg 547w" sizes="(max-width:900px) 92vw, 480px" width="547" height="656" alt="Men gathered at the viewpoint on Divis Mountain at dusk, talking in small groups, with a husky in the foreground" loading="lazy" decoding="async"></picture></div>
     </div>
   </section>
 
@@ -294,7 +296,7 @@ footer a:hover{color:#fff;text-decoration:underline}
         <a class="textlink" href="#">All stories</a>
       </div>
       <article class="feature">
-        <div class="ph c" role="img" aria-label="Placeholder feature image"><span>Photo: featured story</span></div>
+        <div class="ph c"><picture><source type="image/webp" srcset="assets/img/story-two-men-480.webp 480w, assets/img/story-two-men-640.webp 640w" sizes="(max-width:900px) 92vw, 640px"><img src="assets/img/story-two-men-640.jpg" srcset="assets/img/story-two-men-480.jpg 480w, assets/img/story-two-men-640.jpg 640w" sizes="(max-width:900px) 92vw, 640px" width="640" height="480" alt="Two men laughing on a snowy hillside, one standing with a rucksack and one sitting on the grass" loading="lazy" decoding="async"></picture></div>
         <div>
           <span class="mono meta">Featured</span>
           <h3>Placeholder: Why I kept turning up on wet Tuesdays</h3>
@@ -303,9 +305,9 @@ footer a:hover{color:#fff;text-decoration:underline}
         </div>
       </article>
       <div class="cards">
-        <article class="card"><a href="#"><div class="ph d" role="img" aria-label="Placeholder"><span>Photo: story 1</span></div><span class="mono meta">Community</span><h3>Placeholder: A year of Tuesdays</h3><p>What the first twelve months taught us about showing up.</p></a></article>
-        <article class="card"><a href="#"><div class="ph" role="img" aria-label="Placeholder"><span>Photo: story 2</span></div><span class="mono meta">Conversation</span><h3>Placeholder: Talking while walking</h3><p>Why side by side beats face to face for the harder conversations.</p></a></article>
-        <article class="card"><a href="#"><div class="ph c" role="img" aria-label="Placeholder"><span>Photo: story 3</span></div><span class="mono meta">Announcement</span><h3>Placeholder: Winter walks and head torches</h3><p>What to wear, what to bring and when we set off.</p></a></article>
+        <article class="card"><a href="#"><div class="ph d"><picture><source type="image/webp" srcset="assets/img/card-sunset-480.webp 480w, assets/img/card-sunset-800.webp 800w" sizes="(max-width:900px) 92vw, 370px"><img src="assets/img/card-sunset-800.jpg" srcset="assets/img/card-sunset-480.jpg 480w, assets/img/card-sunset-800.jpg 800w" sizes="(max-width:900px) 92vw, 370px" width="800" height="1000" alt="Two walkers with rucksacks silhouetted against an orange sunset on a hilltop" loading="lazy" decoding="async"></picture></div><span class="mono meta">Community</span><h3>Placeholder: A year of Tuesdays</h3><p>What the first twelve months taught us about showing up.</p></a></article>
+        <article class="card"><a href="#"><div class="ph"><picture><source type="image/webp" srcset="assets/img/card-climbers-320.webp 320w, assets/img/card-climbers-427.webp 427w" sizes="(max-width:900px) 92vw, 370px"><img src="assets/img/card-climbers-427.jpg" srcset="assets/img/card-climbers-320.jpg 320w, assets/img/card-climbers-427.jpg 427w" sizes="(max-width:900px) 92vw, 370px" width="427" height="427" alt="Two walkers climbing a steep green hillside under a pale sky" loading="lazy" decoding="async"></picture></div><span class="mono meta">Conversation</span><h3>Placeholder: Talking while walking</h3><p>Why side by side beats face to face for the harder conversations.</p></a></article>
+        <article class="card"><a href="#"><div class="ph c"><picture><source type="image/webp" srcset="assets/img/card-selfie-288.webp 288w, assets/img/card-selfie-384.webp 384w" sizes="(max-width:900px) 92vw, 370px"><img src="assets/img/card-selfie-384.jpg" srcset="assets/img/card-selfie-288.jpg 288w, assets/img/card-selfie-384.jpg 384w" sizes="(max-width:900px) 92vw, 370px" width="384" height="480" alt="A bearded man in a blue waterproof jacket and woollen hat taking a selfie on a winter hillside" loading="lazy" decoding="async"></picture></div><span class="mono meta">Announcement</span><h3>Placeholder: Winter walks and head torches</h3><p>What to wear, what to bring and when we set off.</p></a></article>
       </div>
     </div>
   </section>
