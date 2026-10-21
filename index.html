@@ -74,7 +74,7 @@ header.site{position:absolute;top:0;left:0;right:0;z-index:30;color:#fff}
 /* hero */
 .hero{position:relative;height:100svh;min-height:640px;color:#fff;overflow:hidden;background:linear-gradient(180deg,#4f4d77 0%,#9c7f8e 38%,#4b5f43 74%,#1c2619 100%)}
 .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,12,20,.45) 0%,rgba(6,12,20,.05) 32%,rgba(6,12,20,.78) 100%)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,12,20,.5) 0%,rgba(6,12,20,.12) 30%,rgba(6,12,20,.35) 55%,rgba(6,12,20,.82) 100%)}
 .hero .slot{position:absolute;right:32px;top:104px;z-index:2;font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(0,0,0,.4);padding:4px 9px;border-radius:4px}
 .hero .bottom{position:absolute;left:0;right:0;bottom:0;z-index:2;padding-bottom:56px}
 .hero-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:48px;align-items:end}
@@ -205,11 +205,9 @@ footer a:hover{color:#fff;text-decoration:underline}
 
 <main id="top">
   <section class="hero">
-    <!-- Drop drone or handheld footage at assets/hero.mp4 (short loop, under 8MB, no audio) -->
-    <video id="bgvid" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+    <video id="bgvid" autoplay muted loop playsinline preload="metadata" poster="assets/hero-poster.jpg" aria-hidden="true">
       <source src="assets/hero.mp4" type="video/mp4">
     </video>
-    <span class="slot">Video slot: Divis at dusk, slow aerial loop</span>
     <div class="bottom"><div class="wrap hero-grid">
       <div>
         <h1>Walk, talk and find your footing.</h1>
